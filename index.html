@@ -61,8 +61,8 @@
     }
 
     function decryptVig(){
-        var plaintext = "CTBPGNBGBF";
-        var key = "ASU";
+        var plaintext = document.getElementById("ct").value.toUpperCase();
+        var key = document.getElementById("keychi").value.toUpperCase();
         var ptNum = [];
         var keyNum = [];
         var chiperNum = [];
@@ -107,6 +107,7 @@
         console.log(keyNum);
         console.log(chiperNum);
         console.log(chiperText);
+        document.getElementById("hasil-decrypt").value = chiperText.join("");
     }
 </script>
 <body>
@@ -126,7 +127,8 @@
         <label for="key">key</label>
         <input type="text" name="key" id="keychi">
         <button onclick="decryptVig();">Decrypt</button>
-        <input type="text" id="hasil-encrypt" disabled>
+        <label for="">Hasil Decyrpt</label>
+        <input type="text" id="hasil-decrypt" disabled>
     <!-- </form> -->
 </body>
 
