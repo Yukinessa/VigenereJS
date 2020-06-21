@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script>
+    function encryptVig(){
+        var plaintext = document.getElementById("pt").value.toUpperCase();
+        var key = document.getElementById("key").value.toUpperCase();
+        var ptNum = [];
+        var keyNum = [];
+        var chiperNum = [];
+        var chiperText = [];
+        var arrChar="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var arrNum=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
+                    20,21,22,23,24,25,26];
+        // Mencari value angka setiap huruf dari plaint text
+        for(i = 0; i < plaintext.length; i++){
+            for(j = 0; j < arrChar.length; j++){
+                if(plaintext[i] == arrChar[j]){
+                    ptNum.push(arrNum[j]);
+                }
+            }  
+        }
+        // Mencari value angka setiap huruf dari key
+        for(a = 0; a < key.length; a++){
+            for(b = 0; b < arrChar.length; b++){
+                if(key[a] == arrChar[b]){
+                    keyNum.push(arrNum[b]);
+                }
+            }
+        }
+        // Penjumlahan value angka key + huruf
+        for(i = 0, j = 0; i < ptNum.length; i++, j++){
+            if(j >= keyNum.length){
+                j=0;
+            }
+            chiperNum.push((ptNum[i]+keyNum[j])%26);
+            // console.log((ptNum[i]+keyNum[j])%26);
+            // console.log(ptNum[i], keyNum[j]);
+        }
+        for(i = 0; i < chiperNum.length; i++){
+            for(j = 0; j < arrChar.length; j++){
+                if(chiperNum[i] == arrNum[j]){
+                    chiperText.push(arrChar[j]);
+                }
+            }  
+        }
+        console.log(ptNum);
+        console.log(keyNum);
+        console.log(chiperNum);
+        console.log(chiperText);
+        document.getElementById("hasil-encrypt").value = chiperText.join("");
+    }
+
+    Number.prototype.mod = function(b) { 
+        return ((this % b) + b) % b;
+    }
+
+    function decryptVig(){
+        var plaintext = "CTBPGNBGBF";
+        var key = "ASU";
+        var ptNum = [];
+        var keyNum = [];
+        var chiperNum = [];
+        var chiperText = [];
+        var arrChar="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var arrNum=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
+                    20,21,22,23,24,25,26];
+        // Mencari value angka setiap huruf dari plaint text
+        for(i = 0; i < plaintext.length; i++){
+            for(j = 0; j < arrChar.length; j++){
+                if(plaintext[i] == arrChar[j]){
+                    ptNum.push(arrNum[j]);
+                }
+            }  
+        }
+        // Mencari value angka setiap huruf dari key
+        for(a = 0; a < key.length; a++){
+            for(b = 0; b < arrChar.length; b++){
+                if(key[a] == arrChar[b]){
+                    keyNum.push(arrNum[b]);
+                }
+            }
+        }
+        // Penjumlahan value angka key + huruf
+        for(i = 0, j = 0; i < ptNum.length; i++, j++){
+            if(j >= keyNum.length){
+                j=0;
+            }
+            // chiperNum.push(Math.abs((ptNum[i]-keyNum[j]))%26);
+            chiperNum.push((ptNum[i]-keyNum[j]).mod(26));
+            // console.log((ptNum[i]+keyNum[j])%26);
+            // console.log(ptNum[i], keyNum[j]);
+        }
+        for(i = 0; i < chiperNum.length; i++){
+            for(j = 0; j < arrChar.length; j++){
+                if(chiperNum[i] == arrNum[j]){
+                    chiperText.push(arrChar[j]);
+                }
+            }  
+        }
+        console.log(ptNum);
+        console.log(keyNum);
+        console.log(chiperNum);
+        console.log(chiperText);
+    }
+</script>
+<body>
+    <!-- <form action=""> -->
+        <label for="pt">plaintext</label>
+        <input type="text" name="plaintext" id="pt">
+        <label for="key">key</label>
+        <input type="text" name="key" id="key">
+        <button onclick="encryptVig();">Encrypt</button>
+        <label for="hasil">hasil encrypt</label>
+        <input type="text" id="hasil-encrypt" disabled>
+    <!-- </form> -->
+    <br>
+    <!-- <form action=""> -->
+        <label for="pt">chipertext</label>
+        <input type="text" name="chipertext" id="ct">
+        <label for="key">key</label>
+        <input type="text" name="key" id="keychi">
+        <button onclick="decryptVig();">Decrypt</button>
+        <input type="text" id="hasil-encrypt" disabled>
+    <!-- </form> -->
+</body>
+
+</html>
