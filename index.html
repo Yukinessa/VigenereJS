@@ -71,7 +71,7 @@
         var ptNum = [];
         var keyNum = [];
         var chiperNum = [];
-        var chiperText = [];
+        var plainText = [];
         var arrChar="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var arrNum=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
                     20,21,22,23,24,25,26];
@@ -104,15 +104,15 @@
         for(i = 0; i < chiperNum.length; i++){
             for(j = 0; j < arrChar.length; j++){
                 if(chiperNum[i] == arrNum[j]){
-                    chiperText.push(arrChar[j]);
+                    plainText.push(arrChar[j]);
                 }
             }  
         }
         console.log(ptNum);
         console.log(keyNum);
         console.log(chiperNum);
-        console.log(chiperText);
-        document.getElementById("hasil-decrypt").value = chiperText.join("");
+        console.log([plainText]);
+        document.getElementById("hasil-decrypt").value = plainText.join("");
     }
 </script>
 <body style="background-color: aliceblue;">
